@@ -16,7 +16,6 @@ const db = mysql.createConnection({
 }) 
 
 app.post('/create', (req, res)=>{
-    console.log(req.body)
     const name = req.body.name;
     const age = req.body.age;
     const country = req.body.country;
@@ -29,11 +28,21 @@ app.post('/create', (req, res)=>{
         if(err){
             console.log(err);
         } else {
-            res.Send("value is inserted");
+            res.send("value is inserted");
         }
     }
     )
 })
+
+ app.get('/employeeDel', (req, res)=>{
+     db.query("SELECT * FROM employeeDel",(err, results)=>{
+        if(err){
+            console.log(err);
+        } else {
+            res.send(results);
+        }
+    })
+ })
 
 app.listen(3001, ()=>{
     console.log('hey, your server is rinning')
